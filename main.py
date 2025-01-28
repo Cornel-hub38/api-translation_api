@@ -1,13 +1,15 @@
 from flask import Flask, render_template
 import pandas as pd
-print("Hello_1")
+
 app = Flask(__name__)
 
 df = pd.read_csv("dictionary.csv")
 
+variable = df.to_string()
+
 @app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("home.html", data=variable)
 
 
 @app.route('/api/v1/<word>/')
